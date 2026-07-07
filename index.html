@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ▼▼ 사용자 작성: 기본 SERP ▼▼ -->
+<title>CBL:LOL Npay Summer Cup 이벤트</title>
+<meta name="description" content="매 시즌 랭킹에 도전하고, 마일리지부터 갤럭시 워치 울트라까지 받아가세요!">
+
+<!-- ▼▼ 사용자 작성: Open Graph ▼▼ -->
+<meta property="og:site_name" content="크래프트박스 리그: LOL | 2026 S6·S7·S8">
+<meta property="og:title" content="매월 롤 랭킹에 도전하고, 시즌 보상의 주인공이 되세요!">
+<meta property="og:description" content="매 시즌 랭킹에 도전하고, 마일리지부터 갤럭시 워치 울트라까지 받아가세요!">
+<meta property="og:url" content="https://ics.mediaweb.co.kr/_event/20260602_CBL_LOL/index.html" />
+<meta property="og:image" content="https://ics.mediaweb.co.kr/_event/20260602_CBL_LOL/assets/Thumbnail_800x400.jp">
+<meta property="og:image:alt" content="크래프트박스 리그: LOL">
+
+<!-- ▼▼ 사용자 작성: Twitter / X 카드 ▼▼ -->
+<meta name="twitter:title" content="매월 롤 랭킹에 도전하고, 시즌 보상의 주인공이 되세요!">
+<meta name="twitter:description" content="매 시즌 랭킹에 도전하고, 마일리지부터 갤럭시 워치 울트라까지 받아가세요!">
+<meta name="twitter:url" content="https://ics.mediaweb.co.kr/_event/20260602_CBL_LOL/index.html" />
+<meta name="twitter:image" content="https://ics.mediaweb.co.kr/_event/20260602_CBL_LOL/assets/Thumbnail_1200x630.jpg">
+<meta name="twitter:image:alt" content="크래프트박스 리그: LOL">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+/* ════════════════════════════════════════
+   HEADER + 공유 + 모달 + 토스트 + 플로팅
+════════════════════════════════════════ */
+:root { --header-h: 80px; }
+
+.cb-header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: var(--header-h);
+  background: linear-gradient(90deg, #000 0%, #060712 100%);
+  box-shadow: inset 0px -1px 0px rgba(255,255,255,0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cb-header__inner {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.cb-header__notice-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+.toggle-btn__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.cb-header__notice {
+  font-size: clamp(14px, 1.25vw, 18px);
+  color: #fff;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.cb-header__notice u { text-decoration: underline; }
+.cb-header__notice b { font-weight: 700; }
+.cb-header__notice a { color: #469CFF; text-decoration: none; }
+.cb-header__notice a:hover u { opacity: 0.8; }
+
+@media (max-width: 768px) {
+  .cb-header {
+    height: auto;
+    min-height: var(--header-h);
+    overflow: visible;
+  }
+  .cb-header__notice {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}
+
+/* 공유하기 버튼 */
+.btn-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 16px;
+  height: 46px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+/* 모바일 공유하기 플로팅 */
+.mobile-fab {
+  display: none;
+  position: fixed;
+  right: 16px;
+  bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  z-index: 1800;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.mobile-fab__btn {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.mobile-fab__btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  filter: none;
+}
+.mobile-fab__btn--top {
+  font-family: 'Pretendard', "Malgun Gothic", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  background: #f0f0f2;
+  color: #111;
+}
+.mobile-fab__btn--top:hover { background: #e4e4e8; }
+
+/* 복사 토스트 */
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  top: calc(var(--header-h) + 12px);
+  transform: translate(-50%, 12px);
+  background: #fff;
+  color: #111;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 14px 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2000;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* 공유하기 모달 */
+.share-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+  padding: 20px;
+}
+.share-modal.is-open { display: flex; }
+.share-modal__dialog {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px 24px 28px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: shareModalIn 0.18s ease-out;
+}
+@keyframes shareModalIn {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.share-modal__title {
+  font-family: 'Pretendard', sans-serif;
+  color: #111;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.share-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 26px;
+  color: #555;
+  line-height: 1;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.share-modal__close:hover { background: #f0f0f0; }
+.share-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.share-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.15s;
+  min-height: 44px;
+}
+.share-item:hover { background: #f5f5f7; }
+.share-item__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.share-item__icon svg { width: 28px; height: 28px; display: block; }
+.share-item--kakao     .share-item__icon { background: #FEE500; color: #181600; }
+.share-item--facebook  .share-item__icon { background: #1877F2; }
+.share-item--twitter   .share-item__icon { background: #000; }
+.share-item--naver     .share-item__icon { background: #03C75A; }
+.share-item--instagram .share-item__icon {
+  background: linear-gradient(135deg, #feda75 0%, #fa7e1e 25%, #d62976 50%, #962fbf 75%, #4f5bd5 100%);
+}
+.share-item--copy      .share-item__icon { background: #2c2c32; }
+.share-item__label {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .share-modal__dialog { padding: 28px 18px 22px; }
+  .share-modal__grid { gap: 8px; }
+  .share-item__icon { width: 52px; height: 52px; }
+  .share-item__icon svg { width: 26px; height: 26px; }
+  .share-item__label { font-size: 12px; }
+}
+
+/* 반응형 헤더 — ≤ 1024px */
+@media (max-width: 1024px) {
+  .cb-header {
+    height: auto;
+    min-height: var(--header-h);
+    padding: 10px 0;
+  }
+  .cb-header__inner {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: min(24px, 2vw);
+    padding: 0 24px;
+  }
+  .cb-header__notice-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+    align-items: flex-start;
+  }
+  .cb-header__notice {
+    flex: 1 1 auto;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+}
+
+/* 반응형 헤더 — ≤ 768px */
+@media (max-width: 768px) {
+  .cb-header {
+    height: auto;
+    min-height: var(--header-h);
+    overflow: visible;
+    align-items: stretch;
+    padding: 12px 0;
+  }
+  .cb-header__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 max(12px, env(safe-area-inset-left, 0px)) 0 max(12px, env(safe-area-inset-right, 0px));
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .cb-header__notice-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: center;
+    gap: 0;
+    align-items: stretch;
+    flex: none;
+    overflow: visible;
+  }
+  .cb-header__notice {
+    text-align: center;
+    font-size: clamp(12px, 3.6vw, 17px);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    overflow: visible;
+  }
+  .toggle-btn,
+  .btn-share {
+    display: none;
+  }
+  .mobile-fab {
+    display: flex;
+  }
+}
+</style>
+
+<!-- Kakao JavaScript SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+       HEADER
+  ════════════════════════════════ -->
+<header class="cb-header" id="top">
+  <div class="cb-header__inner">
+    <div class="cb-header__notice-wrap">
+      <!-- PC방 토글 -->
+      <button class="toggle-btn" type="button" id="pcRoomToggle" data-state="off" aria-label="PC방 모드 토글">
+        <img class="toggle-btn__img" src="assets/off=off.png" alt="PC방 모드 OFF" loading="lazy" />
+      </button>
+      <p class="cb-header__notice">
+        본 이벤트는 <a href="https://picaplay.com/pcbang/main.do" target="_blank" rel="noopener noreferrer"><u>피카플레이 가맹 PC방</u></a> 또는 <b>개인PC에서</b> <a href="https://www.craftbox.co.kr/" target="_blank" rel="noopener noreferrer"><u>크래프트박스 설치</u></a> 후 참여 가능합니다.
+      </p>
+    </div>
+    <button class="btn-share" type="button" id="btnShare" aria-label="공유하기">
+      <img src="assets/share_icon.svg" alt="share icon" />
+      <span>공유하기</span>
+    </button>
+  </div>
+</header>
+
+<!-- Background field -->
+<div class="bg-field"></div>
+<div class="bg-grid"></div>
+
+<div class="container">
+
+  <!-- ====================================================== -->
+  <!-- ===========  HERO — 메인 키비주얼 영역  ============== -->
+  <!-- ====================================================== -->
+  <section class="hero-section" data-screen-label="01 Hero">
+    <!-- Full-bleed background image -->
+    <div class="hero-bg" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 600px)" srcset="assets/main-kv_mobile.jpg" />
+        <source media="(min-width: 601px) and (max-width: 768px)" srcset="assets/main-kv_mobile.jpg" />
+        <source media="(max-width: 1024px)" srcset="assets/main-kv_m.jpg" />
+        <img src="assets/main-kv.jpg" alt="" />
+      </picture>
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="page hero-body">
+
+      <!-- Top bar -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:80px; gap:16px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <img src="assets/logo_naverpay.svg" alt="Naverpay" style="height:26px; width:auto; display:block;" />
+            <span style="color:var(--muted-2); font-size:16px; font-weight:400;">×</span>
+            <img src="assets/logo_craftbox.png" alt="Craftbox" style="height:20px; width:auto; display:block;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero body -->
+      <div class="r-hero">
+
+        <!-- LEFT — Title + dates + CTA -->
+        <div>
+          <h1 class="h1 glow-text" style="margin:0;">
+            <span style="color:var(--green);">CBL:LOL <span style="font-size: 26px">S6·S7·S8</span></span><br />
+            Npay<br />
+            Summer Cup
+          </h1>
+
+          <p class="lead" style="margin-top:28px; max-width:480px;">매월 롤 랭킹에 도전하고, 시즌 보상의 주인공이 되세요.
+</p>
+
+          <!-- Date strip -->
+          <div class="r-date" style="margin-top:40px;">
+            <div class="cell">
+              <div class="mono" style="font-size:10px; color:var(--muted-2); letter-spacing:0.2em; margin-bottom:6px;">START</div>
+              <div style="font-size:20px; font-weight:800; letter-spacing:-0.01em;">2026.06.02 <span style="color:var(--muted); font-weight:600;">화</span></div>
+            </div>
+            <div class="divider-v"></div>
+            <div class="cell">
+              <div class="mono" style="font-size:10px; color:var(--muted-2); letter-spacing:0.2em; margin-bottom:6px;">END</div>
+              <div style="font-size:20px; font-weight:800; letter-spacing:-0.01em;">2026.08.31 <span style="color:var(--muted); font-weight:600;">월</span></div>
+            </div>
+            <div class="countdown">
+              <div class="mono" style="font-size:10px; color:var(--green); letter-spacing:0.2em; margin-bottom:6px;">D-<span id="countdown-days">00</span></div>
+              <div class="mono" style="font-size:18px; font-weight:700; color:var(--text);">
+                <span id="countdown-hms">00:00:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div style="margin-top:16px; display:flex; align-items:center; gap:12px;">
+            <div style="flex:1; height:4px; background:rgba(255,255,255,0.06); border-radius:4px; overflow:hidden; position:relative;">
+              <div id="progress-bar" style="width:0%; height:100%; background:linear-gradient(90deg, var(--green-deep), var(--green)); box-shadow:0 0 20px rgba(0,221,100,0.6);"></div>
+            </div>
+            <div class="mono" style="font-size:11px; color:var(--muted);"><span id="progress-pct">0.0</span>%</div>
+          </div>
+
+          <!-- CTA buttons -->
+          <div style="margin-top:48px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+            <a href="#section-ranking" class="btn-cta">
+              랭킹전 참여하기
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT — Empty, key visual sits behind via .hero-bg -->
+        <div aria-hidden="true" class="hero-spacer"></div>
+      </div>
+
+      <!-- Marquee bar -->
+      <div class="marquee-bar" style="padding: 18px 0px; display:flex; align-items:center;">
+        <div class="marquee-track">
+          <div class="group">
+            <span class="display" style="font-size:28px;">RANKING WAR S6·S7·S8</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+            <span class="display" style="font-size:28px; color:var(--muted);">TRIPLE MISSION CHALLENGE</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+            <span class="display" style="font-size:28px;">NPAY PC방 결제 혜택 최대 90,000원</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+          </div>
+          <div class="group">
+            <span class="display" style="font-size:28px;">RANKING WAR S6·S7·S8</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+            <span class="display" style="font-size:28px; color:var(--muted);">TRIPLE MISSION CHALLENGE</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+            <span class="display" style="font-size:28px;">NPAY PC방 결제 혜택 최대 90,000원</span>
+            <span style="color:var(--green); font-size:24px;">●</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  01. 랭킹전 안내  ======================= -->
+  <!-- ====================================================== -->
+  <section class="section" id="section-ranking" data-screen-label="02 Ranking">
+    <div class="page">
+
+      <!-- Section head -->
+      <div class="section-head r-head">
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">SPONSORED BY · NPAY</div>
+          <div class="eyebrow" style="margin-bottom:20px;">01 · 랭킹전 안내</div>
+          <h2 class="h2" style="margin:0;"><span style="color:rgb(0, 221, 100);">CBL: LOL</span> Npay Summer Cup</h2>
+          <p class="lead" style="margin-top: 16px; font-size: clamp(18px, 2vw, 22px); font-weight: 700; color: rgb(138, 147, 179); line-height: 1.4">PC방 · 개인PC 어디에서나 랭킹전에 참여하세요!</p>
+        </div>
+        <div class="head-counter" style="display:none;"></div>
+      </div>
+
+      <!-- 참여 방법 카드 (PC방 / 개인PC 탭) -->
+      <div class="card" style="padding: clamp(20px, 4vw, 40px); margin-bottom: 48px; margin: 0px 0px 80px">
+        <div style="display:flex; align-items:center; justify-content:flex-start; margin-bottom:28px; gap:16px; flex-wrap:wrap;">
+          <div class="tab-strip" data-tabs="ranking-tabs">
+            <button class="active" data-tab="pc-room">PC방 참여 방법</button>
+            <button data-tab="personal">개인PC 참여 방법</button>
+          </div>
+        </div>
+
+        <div class="r-steps">
+          <!-- Steps -->
+          <div>
+            <!-- PC방 steps -->
+            <div class="tab-content active" data-tab-content="pc-room">
+              <div class="step-row">
+                <div class="step-num"><span class="num">1</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">PC방 바탕화면 우하단 [LOL 랭킹전] 클릭</div>
+                </div>
+              </div>
+              <div class="step-row">
+                <div class="step-num"><span class="num">2</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">롤 랭킹전 메뉴에서 [랭킹전 참가하기] 클릭</div>
+                </div>
+              </div>
+              <div class="step-row">
+                <div class="step-num"><span class="num">3</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">리그 오브 레전드 플레이하기</div>
+                  <div class="step-desc">크래프트박스 실행 시, 롤 플레이 데이터가 자동 집계됩니다.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 개인PC steps -->
+            <div class="tab-content" data-tab-content="personal">
+              <div class="step-row">
+                <div class="step-num"><span class="num">1</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">크래프트박스 무료 설치 후 실행하기</div>
+                </div>
+              </div>
+              <div class="step-row">
+                <div class="step-num"><span class="num">2</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">롤 랭킹전 메뉴에서 [랭킹전 참가하기] 클릭</div>
+                </div>
+              </div>
+              <div class="step-row">
+                <div class="step-num"><span class="num">3</span></div>
+                <div style="flex:1;">
+                  <div class="step-title">리그 오브 레전드 플레이하기</div>
+                  <div class="step-desc">크래프트박스 실행 시, 롤 플레이 데이터가 자동 집계됩니다.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PC방: 안내 박스 -->
+            <div class="tab-content active" data-tab-content="pc-room" style="margin-top:24px;">
+              <div style="padding:16px; background:rgba(42,123,255,0.06); border:1px solid rgba(42,123,255,0.2); border-radius:12px; display:flex; align-items:center; gap:12px;">
+                <div style="width:28px; height:28px; border-radius:6px; background:rgba(42,123,255,0.2); color:var(--blue); display:flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0;">i</div>
+                <div style="font-size: 13px; color: var(--muted)">롤 랭킹전 메뉴 접속이 불가한 경우, 매장 사장님께크래프트박스(피카) 최신 버전 업데이트를 요청해 주세요.</div>
+              </div>
+            </div>
+
+            <!-- 개인PC: 크래프트박스 설치 버튼 -->
+            <div class="tab-content" data-tab-content="personal" style="margin-top:24px;">
+              <a href="https://www.craftbox.co.kr/" target="_blank" rel="noopener" class="btn-cta" style="width:100%; justify-content:center; text-decoration:none;">
+                크래프트박스 설치하기
+                <span class="arrow">↓</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Screen preview (탭별 이미지) -->
+          <div>
+            <!-- PC방 이미지 -->
+            <div class="tab-content active" data-tab-content="pc-room">
+              <img src="assets/img_how.png" alt="PC방 참여 방법 — LOL 랭킹전 실행 화면" style="width:100%; height:auto; border-radius:12px; border:1px solid var(--line);" />
+            </div>
+            <!-- 개인PC 이미지 (크래프트박스 사이트 링크) -->
+            <a class="tab-content" data-tab-content="personal" href="https://www.craftbox.co.kr/" target="_blank" rel="noopener" style="text-decoration:none;">
+              <img src="assets/img_how2.png" alt="개인PC 참여 방법 — 크래프트박스 다운로드" style="width:100%; height:auto; border-radius:12px; border:1px solid var(--line);" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Season cards -->
+      <div style="margin-bottom: 60px; margin: 4px 0px 60px">
+        <div class="section-head" style="text-align: left; margin-bottom: 48px">
+          <h2 class="h2" style="margin: 0; font-size: 30px; padding: 0px">랭킹전 경품 안내</h2>
+          <p class="lead" style="margin: 16px 0 0; font-size: 17px">매 시즌 누적 어시스트 수에 따라 푸짐한 경품이 지급됩니다.</p>
+        </div>
+
+        <div class="r-3-tight">
+          <div class="card lift" style="padding:28px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:-10px; right:-10px; font-size:160px; font-family:'Bebas Neue'; color:rgba(0,221,100,0.06); line-height:1;">06</div>
+            <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em; margin-bottom:12px;">SEASON 6</div>
+            <div style="font-size:28px; font-weight:900; margin-bottom:8px;">SEASON 6</div>
+            <div style="font-size:14px; color:var(--muted);">6월 2일(화) ~ 6월 30일(화)</div>
+          </div>
+
+          <div class="card lift" style="padding:28px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:-10px; right:-10px; font-size:160px; font-family:'Bebas Neue'; color:rgba(0,221,100,0.06); line-height:1;">07</div>
+            <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em; margin-bottom:12px;">SEASON 7</div>
+            <div style="font-size:28px; font-weight:900; margin-bottom:8px;">SEASON 7</div>
+            <div style="font-size:14px; color:var(--muted);">7월 1일(수) ~ 7월 31일(금)</div>
+          </div>
+
+          <div class="card lift" style="padding:28px; position:relative; overflow:hidden;">
+            <div style="position:absolute; top:-10px; right:-10px; font-size:160px; font-family:'Bebas Neue'; color:rgba(0,221,100,0.06); line-height:1;">08</div>
+            <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em; margin-bottom:12px;">SEASON 8</div>
+            <div style="font-size:28px; font-weight:900; margin-bottom:8px;">SEASON 8</div>
+            <div style="font-size:14px; color:var(--muted);">8월 1일(토) ~ 8월 31일(월)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Podium card -->
+      <div class="card" style="padding:clamp(24px, 4vw, 48px); position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:radial-gradient(800px 400px at 50% 100%, rgba(0,221,100,0.10), transparent 60%); pointer-events:none;"></div>
+
+        <div style="text-align:center; margin-bottom:48px; position:relative;">
+          <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.24em; margin-bottom:12px;">● INDIVIDUAL RANKING REWARD</div>
+          <h3 class="h3" style="margin: 0; font-size: 34px">개인 시즌 순위 보상</h3>
+        </div>
+
+        <!-- Podium 1 / 2 / 3 -->
+        <div class="r-3-tight">
+
+          <!-- 1위 -->
+          <div class="card lift" style="padding:24px; position:relative; overflow:hidden; border-color:rgba(255,200,87,0.4); background:linear-gradient(180deg, rgba(255,200,87,0.07), rgba(10,15,36,0.6));">
+            <!-- rank badge -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="num" style="font-size:44px; color:var(--gold); line-height:0.8;">1</div>
+                <div>
+                  <div class="mono" style="font-size:10px; color:var(--muted); letter-spacing:0.16em;">1ST PLACE</div>
+                </div>
+              </div>
+              <span class="pill" style="background:rgba(255,200,87,0.14); color:var(--gold); border:1px solid rgba(255,200,87,0.4); font-size:11px;">★ GRAND</span>
+            </div>
+            <!-- 보상 이미지 -->
+            <img src="assets/img_1st.png" alt="1위 보상 — PICAPlay 1,000,000 마일리지" style="width:78%; max-width:300px; height:auto; display:block; margin:8px auto 4px;" />
+          </div>
+
+          <!-- 2위 -->
+          <div class="card lift" style="padding:24px; position:relative; overflow:hidden;">
+            <!-- rank badge -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="num" style="font-size:44px; color:var(--silver); line-height:0.8;">2</div>
+                <div>
+                  <div class="mono" style="font-size:10px; color:var(--muted); letter-spacing:0.16em;">2ND PLACE</div>
+                </div>
+              </div>
+            </div>
+            <!-- 보상 이미지 -->
+            <img src="assets/img_2nd.png" alt="2위 보상 — PICAPlay 500,000 마일리지" style="width:78%; max-width:300px; height:auto; display:block; margin:8px auto 4px;" />
+          </div>
+
+          <!-- 3위 -->
+          <div class="card lift" style="padding:24px; position:relative; overflow:hidden;">
+            <!-- rank badge -->
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="num" style="font-size:44px; color:var(--bronze); line-height:0.8;">3</div>
+                <div>
+                  <div class="mono" style="font-size:10px; color:var(--muted); letter-spacing:0.16em;">3RD PLACE</div>
+                </div>
+              </div>
+            </div>
+            <!-- 보상 이미지 -->
+            <img src="assets/img_3rd.png" alt="3위 보상 — PICAPlay 100,000 마일리지" style="width:78%; max-width:300px; height:auto; display:block; margin:8px auto 4px;" />
+          </div>
+
+        </div>
+
+        <!-- Tier rows -->
+        <div style="border-top:1px solid var(--line); padding-top:32px;">
+          <div class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.2em; margin-bottom: 16px; font-family: Pretendard">NEXT TIERS</div>
+          <div class="r-5">
+            <div class="card-line lift" style="padding:20px;">
+              <div style="color:var(--muted); margin-bottom:8px; font-size:14px;">4 ~ 10등</div>
+              <div style="font-family:'Pretendard',sans-serif; font-weight:800; font-size:24px; color:var(--green); line-height:1; letter-spacing:-0.01em;">10,000M</div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2)">총 7명</div>
+            </div>
+            <div class="card-line lift" style="padding:20px;">
+              <div style="color:var(--muted); margin-bottom:8px; font-size:14px;">11 ~ 20등</div>
+              <div style="font-family:'Pretendard',sans-serif; font-weight:800; font-size:24px; color:var(--green); line-height:1; letter-spacing:-0.01em;">5,000M</div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2)">총 10명</div>
+            </div>
+            <div class="card-line lift" style="padding:20px;">
+              <div style="color:var(--muted); margin-bottom:8px; font-size:14px;">21 ~ 100등</div>
+              <div style="font-family:'Pretendard',sans-serif; font-weight:800; font-size:24px; color:var(--green); line-height:1; letter-spacing:-0.01em;">2,000M</div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2)">총 80명</div>
+            </div>
+            <div class="card-line lift" style="padding:20px;">
+              <div style="color:var(--muted); margin-bottom:8px; font-size:14px;">101 ~ 300등</div>
+              <div style="font-family:'Pretendard',sans-serif; font-weight:800; font-size:24px; color:var(--green); line-height:1; letter-spacing:-0.01em;">1,000M</div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2)">총 200명</div>
+            </div>
+            <div class="card-line lift" style="padding:20px;">
+              <div style="color:var(--muted); margin-bottom:8px; font-size:14px;">301 ~ 3,000등</div>
+              <div style="font-family:'Pretendard',sans-serif; font-weight:800; font-size:24px; color:var(--green); line-height:1; letter-spacing:-0.01em;">100M</div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--muted-2)">총 2,700명</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonus box -->
+        <div class="bonus-box" style="margin-top:32px; padding:24px; border:1px solid rgba(0,221,100,0.3); border-radius:14px; background:rgba(0,221,100,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div class="pill pill-green" style="margin-bottom:10px;">★ 행운의 랭킹 BONUS ★</div>
+            <div style="font-size:18px; font-weight:800;">행운의 랭킹 달성 시 <span style="color:var(--green);">10,000M 추가 보상 지급!</span></div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; font-size:20px;">
+            <span class="pill pill-line" style="padding:8px 16px;">7등</span>
+            <span class="pill pill-line" style="padding:8px 16px;">77등</span>
+            <span class="pill pill-line" style="padding:8px 16px;">777등</span>
+            <span class="pill pill-line" style="padding:8px 16px;">2026등</span>
+            <span class="pill pill-line" style="padding:8px 16px;">3000등</span>
+          </div>
+        </div>
+
+        <!-- TIP box -->
+        <div class="r-tip" style="margin-top:16px; padding:24px; border:1px solid var(--line); border-radius:14px;">
+          <div>
+            <div class="pill pill-line" style="margin-bottom:10px; color:var(--green); border-color:rgba(0,221,100,0.3);">💡 랭킹전 참여 TIP</div>
+            <div style="font-size: 26px; font-weight: 700; margin-bottom: 14px">크래프트박스 도전과제 달성 시 최대 <span style="color:var(--green);"><br>50,000 마일리지</span> 추가 획득!</br></div>
+            <div style="font-size: 16px; line-height:1.4; color: var(--muted)">크래프트박스 내 혜택박스 → 도전과제 탭에서 롤 도전과제를 완료하고 열쇠로 랜덤 마일리지를 획득하세요!</div>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:center;"><img src="assets/tip_box.png" alt="크래프트박스 — 도전과제 열쇠 보상" style="width:100%; max-width:300px; height:auto; display:block;" /></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  02. 미션 이벤트  ======================= -->
+  <!-- ====================================================== -->
+  <section class="section" id="section-mission" data-screen-label="03 Mission" style="background:linear-gradient(180deg, transparent, rgba(0,221,100,0.04), transparent);">
+    <div class="page">
+
+      <div class="section-head r-head">
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">SPONSORED BY · NPAY</div>
+          <div class="eyebrow" style="margin-bottom:20px;">02 · 미션 이벤트</div>
+          <h2 class="h2" style="margin:0;">
+            트리플 미션 <span style="color:var(--green);">챌린지</span>
+          </h2>
+          <p class="lead nowrap-lead" style="margin-top:16px; font-size:clamp(18px, 2vw, 22px); font-weight:700; color:var(--text); line-height:1.4; white-space:nowrap;">완료할수록 당첨 확률 UP! 매월 원하는 미션을 완료하고<br> 프리미엄 경품에 도전하세요!</br></p>
+          <div style="margin-top:14px; font-size:14px; color:var(--muted); line-height:1.7;">
+            반영 기간 : 6월 2일(화) ~ 8월 31일(월)&nbsp;&nbsp;|&nbsp;&nbsp;당첨자 발표 : 매월 이벤트 종료 후 2주 이내<br />
+            ※ 지급 경품은 수급 상황에 따라 변경될 수 있습니다.
+          </div>
+        </div>
+        <div class="head-counter" style="display:none;"></div>
+      </div>
+
+      <!-- Monthly premium prizes -->
+      <div class="r-3-tight">
+        <!-- June (featured) -->
+        <div class="prize-card featured">
+          <div class="prize-head">
+            <div class="prize-month"><span class="m-num">06</span><span class="m-en">JUNE</span></div>
+            <span class="prize-tag">★ 프리미엄 · 1명</span>
+          </div>
+          <div class="prize-media">
+            <img src="assets/S6_goods.png" alt="RTX5060ti" />
+          </div>
+          <div class="prize-foot">
+            <div class="prize-name">RTX 5060 Ti</div>
+            <div class="prize-sub">GRAPHICS CARD</div>
+          </div>
+        </div>
+
+        <!-- July -->
+        <div class="prize-card featured">
+          <div class="prize-head">
+            <div class="prize-month"><span class="m-num">07</span><span class="m-en">JULY</span></div>
+            <span class="prize-tag">★ 프리미엄 · 1명</span>
+          </div>
+          <div class="prize-media">
+            <img src="assets/S7_goods.png" alt="갤럭시 워치 울트라 or 애플워치11" />
+          </div>
+          <div class="prize-foot">
+            <div class="prize-name">갤럭시 워치 울트라 <span style="color:var(--muted); font-weight:600;">or</span> 애플워치 11</div>
+            <div class="prize-sub">SMART WATCH</div>
+          </div>
+        </div>
+
+        <!-- August -->
+        <div class="prize-card featured">
+          <div class="prize-head">
+            <div class="prize-month"><span class="m-num">08</span><span class="m-en">AUGUST</span></div>
+            <span class="prize-tag">★ 프리미엄 · 1명</span>
+          </div>
+          <div class="prize-media">
+            <img src="assets/S8_goods.png" alt="Airpods MAX2" />
+          </div>
+          <div class="prize-foot">
+            <div class="prize-name">AirPods Max 2</div>
+            <div class="prize-sub">HEADPHONE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline connector -->
+      <div style="padding:20px 28px; text-align:center; border:1px dashed var(--line-strong); border-radius:14px; margin-top:48px; margin-bottom:48px; font-size:clamp(15px, 1.6vw, 18px); color:var(--muted);">
+        매월 각 미션 완료자 총 <span class="num" style="color:var(--green); font-size:clamp(20px, 2.2vw, 24px); margin:0 4px;">300명</span> 대상 <span style="color:var(--text); font-weight:700;">프리미엄 경품 최종 추첨 지급!</span>
+      </div>
+
+      <!-- 3 Mission compact cards -->
+      <div class="r-3" style="margin-bottom:20px;">
+        <!-- Mission 01 -->
+        <div class="card lift" style="padding:28px; position:relative; overflow:hidden; display:flex; flex-direction:column;">
+          <div class="num" style="position:absolute; top:-20px; right:-8px; font-size:160px; color:rgba(255,255,255,0.03); line-height:1;">01</div>
+          <div style="position:relative; display:flex; flex-direction:column; flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+              <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em;">MISSION 01</div>
+              <span class="pill pill-green" style="font-size:12px;">매월 100명 추첨 선발</span>
+            </div>
+            <!-- 이미지 슬롯 -->
+            <div style="aspect-ratio:16/9; margin-bottom:20px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; padding:10px; overflow:hidden;"><img src="assets/mission_01.png" alt="랭킹전 참가하기" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;" /></div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; margin-bottom:8px;">랭킹전 플레이 달성</h3>
+            <p style="margin: 0; font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: 24px">이벤트 기간 랭킹전 참여 후 3회 이상 플레이한 인원 중 100명을 추첨하여 선발</p>
+          </div>
+        </div>
+
+        <!-- Mission 02 -->
+        <div class="card lift" style="padding:28px; position:relative; overflow:hidden; display:flex; flex-direction:column;">
+          <div class="num" style="position:absolute; top:-20px; right:-8px; font-size:160px; color:rgba(255,255,255,0.03); line-height:1;">02</div>
+          <div style="position:relative; display:flex; flex-direction:column; flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+              <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em;">MISSION 02</div>
+              <span class="pill pill-green" style="font-size:12px;">매월 100명 추첨 선발</span>
+            </div>
+            <!-- 이미지 슬롯 -->
+            <div style="aspect-ratio:16/9; margin-bottom:20px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; padding:10px; overflow:hidden;"><img src="assets/mission_02.png" alt="롤 도전과제 리스트" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;" /></div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; margin-bottom:8px;">도전과제 업적 달성</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 24px">이벤트 기간 크래프트박스 롤 도전과제 업적 달성 횟수 
+상위 100명을 선발</p>
+          </div>
+        </div>
+
+        <!-- Mission 03 -->
+        <div class="card lift" style="padding:28px; position:relative; overflow:hidden; display:flex; flex-direction:column;">
+          <div class="num" style="position:absolute; top:-20px; right:-8px; font-size:160px; color:rgba(255,255,255,0.03); line-height:1;">03</div>
+          <div style="position:relative; display:flex; flex-direction:column; flex:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+              <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.2em;">MISSION 03</div>
+              <span class="pill pill-green" style="font-size:12px;">매월 100명 추첨 선발</span>
+            </div>
+            <!-- 이미지 슬롯 -->
+            <div style="aspect-ratio:16/9; margin-bottom:20px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; padding:10px; overflow:hidden;"><img src="assets/mission_03.png" alt="Npay 결제 완료" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;" /></div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; margin-bottom:8px;">Npay 누적 결제</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 24px">이벤트 기간 피카플레이 로그인 후 Npay 현장 누적 결제 횟수
+상위 100명을 선발</p>
+          </div>
+        </div>
+
+        <div class="mission-note" style="margin-top: 20px; font-size: 12px; color: var(--muted-2); line-height: 1.7; text-align: center; grid-column: 3;">
+          <div>- 1회 결제 시 최소 1,000원 이상 결제 건만 인정됩니다.</div>
+          <div>- 결제 후 환불 된 건들은 횟수에서 카운트되지 않습니다.</div>
+        </div>
+      </div>
+
+      <div style="display:none;">
+        <div>- 1회 결제 시 최소 1,000원 이상 결제 건만 인정됩니다.</div>
+        <div>- 결제 후 환불 된 건들은 횟수에서 카운트되지 않습니다.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  03. 결제 이벤트  ======================= -->
+  <!-- ====================================================== -->
+  <section class="section" id="section-payment" data-screen-label="04 Payment" style="padding: 120px 0px 60px">
+    <div class="page">
+
+      <div class="section-head r-head">
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">SPONSORED BY · NPAY</div>
+          <div class="eyebrow" style="margin-bottom:20px;">03 · 결제 이벤트</div>
+          <h2 class="h2" style="margin:0;">
+            Npay PC방 <span style="color:var(--green);">결제 혜택</span>
+          </h2>
+          <p class="lead" style="margin-top:16px; max-width:600px;">
+            피카PC방에서 Npay로 결제 시, 매월 최대 <span style="color:var(--green); font-weight:800;">90,000원 상당 혜택</span>을 드려요!
+          </p>
+          <div style="margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.7">
+            반영 기간 : 6월 2일(화) ~ 8월 31일(월)&nbsp;&nbsp;|&nbsp;&nbsp;당첨자 발표 : 매월 이벤트 종료 후 2주 이내
+          </div>
+        </div>
+        <div class="head-counter" style="display:none;"></div>
+      </div>
+
+      <!-- 3 Benefit cards -->
+      <div style="display:grid; grid-template-columns:1fr; gap:16px;">
+
+        <!-- 혜택 01 -->
+        <div class="card lift r-pay" style="padding:0; overflow:hidden;">
+          <div class="pay-mid" style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+            <div class="pill pill-line" style="align-self:flex-start; margin-bottom:14px;">혜택 01</div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; line-height:1.3; margin-bottom:12px;">5만원 이상 결제 시 <span style="color:var(--green);">10,000원</span> 상당 혜택 지급</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 540px;">피카PC방에서 피카플레이 회원으로 로그인 후, Npay QR결제(포인트/머니)로 누적 5만원 이상 결제 시 10,000 마일리지 추첨 지급!</p>
+          </div>
+          <div class="pay-right" style="padding:24px; border-left:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:12px;">
+            <div class="pill pill-line">매월 추첨 500명</div>
+            <img src="assets/m10000.png" alt="10,000 마일리지" style="width:100%; max-width:240px; height:auto; display:block;" />
+          </div>
+        </div>
+
+        <!-- 혜택 02 -->
+        <div class="card lift r-pay" style="padding:0; overflow:hidden;">
+          <div class="pay-mid" style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+            <div class="pill pill-line" style="align-self:flex-start; margin-bottom:14px;">혜택 02</div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; line-height:1.3; margin-bottom:12px;">10만원 이상 결제 시 <span style="color:var(--green);">30,000원</span> 상당 혜택 지급</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 540px;">피카PC방에서 피카플레이 회원으로 로그인 후 Npay QR결제(포인트/머니)로 누적 10만원 이상 결제 시 30,000 마일리지 추첨 지급!</p>
+          </div>
+          <div class="pay-right" style="padding:24px; border-left:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:12px;">
+            <div class="pill pill-line">매월 추첨 200명</div>
+            <img src="assets/m30000.png" alt="30,000 마일리지" style="width:100%; max-width:240px; height:auto; display:block;" />
+          </div>
+        </div>
+
+        <!-- 혜택 03 (featured) -->
+        <div class="card lift r-pay" style="padding:0; overflow:hidden; border-color:rgba(0,221,100,0.3);">
+          <div class="pay-mid" style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+            <div class="pill pill-green" style="align-self:flex-start; margin-bottom:14px;">혜택 03</div>
+            <h3 style="margin:0; font-size:22px; font-weight:800; line-height:1.3; margin-bottom:12px;">결제 금액 TOP20 달성 시 <span style="color:var(--green);">50,000원</span> 상당 혜택 지급</h3>
+            <p style="margin: 0; font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 540px;">피카PC방에서 피카플레이 회원으로 로그인 후 Npay QR결제(포인트/머니)로 누적 결제 금액 TOP20 달성 시 50,000 마일리지 지급!</p>
+          </div>
+          <div class="pay-right" style="padding:24px; border-left:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:12px;">
+            <div class="pill pill-line">매월 상위 20명</div>
+            <img src="assets/m50000.png" alt="50,000 마일리지" style="width:100%; max-width:240px; height:auto; display:block;" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fine print -->
+      <div class="r-fine" style="margin-top:32px; padding:24px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.02);">
+        <div>
+          <div style="font-size:14px; font-weight:700;">참여 유의사항</div>
+        </div>
+        <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;">
+          <li style="display:grid; grid-template-columns:10px 1fr; gap:10px; font-size:13px; color:var(--muted); line-height:1.6;"><span style="color:var(--muted-2);">•</span><span>본 이벤트는 피카플레이 로그인 후 결제한 금액에 한해 집계됩니다.</span></li>
+          <li style="display:grid; grid-template-columns:10px 1fr; gap:10px; font-size:13px; color:var(--muted); line-height:1.6;"><span style="color:var(--muted-2);">•</span><span>마일리지는 각 월별 이벤트 종료 후 2주 이내 참여한 피카플레이 계정으로 지급됩니다.</span></li>
+          <li style="display:grid; grid-template-columns:10px 1fr; gap:10px; font-size:13px; color:var(--muted); line-height:1.6;"><span style="color:var(--muted-2);">•</span><span>피카플레이 앱을 통한 복합결제 네이버페이 금액도 이벤트 대상 금액에 포함됩니다.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  참여방법 (How to Join)  ================ -->
+  <!-- ====================================================== -->
+  <section class="section" id="section-participation" data-screen-label="05 Participation" style="padding: 60px 0px 120px">
+    <div class="page">
+
+      <div class="section-head" style="text-align:center; margin-bottom:60px;">
+        <div class="eyebrow" style="margin-bottom:20px;">● HOW TO JOIN</div>
+        <h2 class="h2" style="margin: 0; font-size: 40px">이벤트 참여방법</h2>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="join-tabs" data-tabs="join-tabs">
+        <button class="tab-large active-naver" data-tab="naver"><span class="tab-num">N</span>네이버 / 네이버페이 APP</button>
+        <button class="tab-large" data-tab="pica"><span class="tab-num">P</span>피카플레이 APP</button>
+      </div>
+
+      <!-- Tab content: naver -->
+      <div class="tab-content active" data-tab-content="naver">
+        <div class="r-3" style="position:relative;">
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">1</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_naver_1.png" class="join-shot step1" alt="결제수단 — 네이버페이 선택" />
+            </div>
+            <div style="font-size: 17px; font-weight: 800; margin: 0 auto 6px; width: 270px; text-align: center">피카플레이 회원으로 로그인 후
+요금제나 먹거리 구매 시 Npay 선택</div>
+          </div>
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">2</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_naver_2.png" class="join-shot" alt="네이버페이로 결제하기" />
+            </div>
+            <div style="font-size: 17px; font-weight: 800; margin: 0 auto 6px; width: 260px; text-align: center">네이버/Npay APP으로 PC 화면의 QR 스캔</div>
+            <div style="font-size: 13px; color: var(--muted); line-height: 1.6">
+</div>
+          </div>
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">3</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_naver_3.png" class="join-shot" alt="네이버페이 결제 화면" />
+            </div>
+            <div style="font-size: 17px; font-weight: 800; margin: 0 auto 6px; width: 270px; text-align: center">포인트/머니를 사용하여 누적 5만원 이상 결제</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab content: pica -->
+      <div class="tab-content" data-tab-content="pica">
+        <div class="r-3" style="position:relative;">
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">1</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_pica_1.png" class="join-shot step1" alt="결제수단 — 피카플레이 선택" />
+            </div>
+            <div style="font-size: 17px; font-weight: 800; margin: 0 auto 6px; width: 330px; text-align: center">피카플레이 회원으로 로그인 후,
+요금제나 먹거리 구매 시 피카플레이 선택</div>
+          </div>
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">2</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_pica_2.png" class="join-shot" alt="피카페이로 결제하기" />
+            </div>
+            <div style="font-size:17px; font-weight:800; margin-bottom:6px;">피카플레이 APP으로 PC화면의 QR스캔</div>
+          </div>
+
+          <div style="position:relative; z-index:1;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="bigstep-circle">3</div>
+            </div>
+            <div class="card join-box" style="margin-bottom:20px;">
+              <img src="assets/join_pica_3.png" class="join-shot step1" alt="피카페이 결제 화면" />
+            </div>
+            <div style="font-size: 17px; font-weight: 800; margin: 0 auto 6px; width: 320px; text-align: center">Npay로 현장결제 버튼 클릭 후, 포인트/머니를 사용하여
+누적 5만원 이상 결제</div>
+            <div style="font-size:15px; color:var(--muted); line-height:1.6;">
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Foot note (피카플레이 APP 탭에서만 노출) -->
+      <div class="tab-content" data-tab-content="pica" style="margin-top:48px; padding:20px 28px; text-align:center; border:1px dashed var(--line-strong); border-radius:14px; font-size:13px; color:var(--muted); line-height:1.8;">
+        ※ 피카페이 잔액이 결제 금액보다 부족할 경우에만 네이버페이와 함께 현장결제가 가능합니다.<br />
+        ※ 피카페이 결제 금액과 네이버페이로 피카페이를 충전한 금액은 이벤트 대상 금액에 포함되지 않습니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  유의사항 + Final CTA + Footer  ========= -->
+  <!-- ====================================================== -->
+  <section class="section" id="section-notice" data-screen-label="06 Notice">
+    <div class="page">
+
+      <!-- 마일리지 / 크래프트박스 TIP cards -->
+      <div class="r-2" style="margin-bottom:60px;">
+        <div class="card lift" style="padding:32px; display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center; background:linear-gradient(180deg, rgba(255,200,87,0.08), transparent);">
+          <div style="width:140px; height:140px; border-radius:18px; background:rgba(255,255,255,0.04); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:10px;"><img src="assets/tip01.png" alt="피카 마일리지" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;" /></div>
+          <div>
+            <div style="font-size:20px; font-weight:800; margin-bottom:8px;">피카 마일리지란?</div>
+            <div style="font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 350px;">이벤트를 통해 얻은 마일리지로 PC방 요금제, 먹거리 구매 또는 컬쳐랜드 상품권으로 교환할 수 있어요.</div>
+          </div>
+        </div>
+        <div class="card lift" style="padding:32px; display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center; background:linear-gradient(180deg, rgba(42,123,255,0.08), transparent);">
+          <div style="width:140px; height:140px; border-radius:18px; background:rgba(255,255,255,0.04); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:10px;"><img src="assets/tip02.png" alt="크래프트박스" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;" /></div>
+          <div>
+            <div style="font-size:20px; font-weight:800; margin-bottom:8px;">크래프트박스란?</div>
+            <div style="font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 350px;">PC방·집 어디서든 게임만 해도 다양한 혜택을 받아갈 수 있는 
+게임 런처입니다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice -->
+      <div class="card" style="padding:clamp(24px, 4vw, 48px);">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--line); flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 class="h3" style="margin:0;">유의사항</h3>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:32px;">
+
+          <!-- 01 공통 -->
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="num" style="font-size:24px; color:var(--green);">01</div>
+              <div style="font-size:18px; font-weight:800;">공통</div>
+            </div>
+            <ul style="margin:0; padding:0; list-style:none;">
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>챔피언컵 및 도전과제는 최신 버전 크래프트박스에서만 이용 가능합니다. → 랭킹전 메뉴 접속이 불가한 경우, 매장 사장님께 최신 버전 업데이트를 요청해 주세요.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>지급받은 마일리지는 90일의 유효기간이 지나면 자동 소멸됩니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>(주)미디어웹은 경품 지급을 위해 당첨자에 한하여 개인정보를 수집하며, 5만 원 초과 경품은 제세공과금(22% 원천징수)이 본인 부담됩니다.<br />→ 관련 세무 신고를 위해 신분증 사본(또는 주민등록등본 등)제출이 필요할 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>기한 내 서류 제출 및 제세공과금 납부가 완료되지 않을 경우 당첨 대상자에서 제외될 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>랭킹전 1~3등 및 행운의 랭킹 대상자 마일리지 지급은 매월 이벤트 종료 후 별도로 지급 예정입니다.
+</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>본 이벤트는 당사 사정에 따라 조기 종료 또는 연장될 수 있습니다.
+</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>부정한 방법으로 이벤트에 참여한 이력이 확인될 경우 지급된 보상이 회수될 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>이벤트 관련 문의 사항은 피카플레이 또는 크래프트박스 1:1 문의를 통해 문의 부탁드립니다.</span></li>
+            </ul>
+          </div>
+
+          <!-- 02 트리플 미션 챌린지 -->
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="num" style="font-size:24px; color:var(--green);">02</div>
+              <div style="font-size:18px; font-weight:800;">트리플 미션 챌린지 (sponsored by Npay)</div>
+            </div>
+            <ul style="margin:0; padding:0; list-style:none;">
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>이벤트 당첨자 발표는 매월 이벤트 종료 후 2주 이내에 진행되며, 당첨자는 크래프트박스 블로그에 공지됩니다. <a href="https://blog.naver.com/playcraftbox" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:4px; margin-left:4px; padding:2px 10px; border:1px solid rgba(0,221,100,0.4); border-radius:999px; color:var(--green); text-decoration:none; font-weight:700; white-space:nowrap;">바로가기 ↗</a></span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>경품 당첨자는 3회 이상 연락이 되지 않을 경우 당첨이 취소될 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>경품 이미지와 실제 수령 경품에는 차이가 있을 수 있습니다.
+</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>재고 수급 현황에 따라서, 경품은 변경될 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>Npay 결제 후 환불 및 취소 된 건들은 횟수에 카운트되지 않으며, 반복적인 결제 및 환불 및 취소의 경우에는 어뷰징으로 간주되어 이벤트 대상자에서 제외될 수 있습니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>1회 결제 시 최소 1,000원 이상 결제 건 만 인정됩니다.</span></li>
+            </ul>
+          </div>
+
+          <!-- 03 Npay PC방 결제 혜택 -->
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <div class="num" style="font-size:24px; color:var(--green);">03</div>
+              <div style="font-size:18px; font-weight:800;">Npay PC방 결제 혜택</div>
+            </div>
+            <ul style="margin:0; padding:0; list-style:none;">
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>본 이벤트는 피카플레이 회원으로 로그인 후 결제한 금액에 한해 집계됩니다. </span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>당첨자 마일리지는 각 월별 이벤트 종료 후 2주 이내 참여한 피카플레이 계정으로 지급됩니다.</span></li>
+              <li style="display:grid; grid-template-columns:8px 1fr; gap:12px; padding:6px 0; font-size:13px; color:var(--muted); line-height:1.7;"><span style="color:var(--muted-2);">•</span><span>피카플레이 앱을 통한 복합결제 네이버페이 금액도 이벤트 대상 금액에 포함됩니다.</span></li>
+              
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div style="margin-top:60px; padding:clamp(32px, 6vw, 60px); border:1px solid var(--line); border-radius:24px; background:linear-gradient(180deg, rgba(0,221,100,0.06), transparent); text-align:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; inset:0; background:radial-gradient(600px 300px at 50% 0%, rgba(0,221,100,0.16), transparent 70%); pointer-events:none;"></div>
+        <div style="position:relative;">
+          <div class="mono" style="font-size:11px; color:var(--green); letter-spacing:0.24em; margin-bottom:16px;">● READY TO JOIN?</div>
+          <h2 class="h2" style="margin:0; margin-bottom:16px;">지금 바로 챔피언컵에 도전!</h2>
+          <p class="lead" style="margin-bottom:32px;">2026.06.02 — 2026.08.31 · 3개월간 진행되는 시즌 챔피언십</p>
+          <a href="#" id="cta-top" class="btn-cta">랭킹전 참여하기 <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!-- ===========  Right Rail Navigation (sticky)  ======== -->
+  <!-- ====================================================== -->
+  <nav class="rail" id="rail">
+    <a href="#section-ranking" data-section="section-ranking">
+      <small>CBL:LOL Npay Cup</small>01. 랭킹전 안내
+    </a>
+    <a href="#section-mission" data-section="section-mission">
+      <small>트리플 미션 챌린지</small>02. 미션 이벤트
+    </a>
+    <a href="#section-payment" data-section="section-payment">
+      <small>Npay PC방 결제 혜택</small>03. 결제이벤트
+    </a>
+    <button class="top-btn" id="rail-top">↑ TOP</button>
+  </nav>
+
+</div><!-- /.container -->
+
+<script src="script.js"></script>
+
+<!-- ═══════════════════════════════
+       공유하기 모달
+  ════════════════════════════════ -->
+<div id="shareModal" class="share-modal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle" aria-hidden="true">
+  <div class="share-modal__dialog" role="document">
+    <button type="button" class="share-modal__close" id="shareModalClose" aria-label="닫기">&times;</button>
+    <h2 id="shareModalTitle" class="share-modal__title">공유하기</h2>
+    <div class="share-modal__grid">
+      <button type="button" class="share-item share-item--kakao" data-share="kakao" aria-label="카카오톡으로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.86 5.32 4.66 6.73L5.5 21.5l4.2-2.47c.76.11 1.54.17 2.3.17 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+        </span>
+        <span class="share-item__label">카카오톡</span>
+      </button>
+      <button type="button" class="share-item share-item--facebook" data-share="facebook" aria-label="페이스북으로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5v3.1h2.6V21h3.4z"/></svg>
+        </span>
+        <span class="share-item__label">페이스북</span>
+      </button>
+      <button type="button" class="share-item share-item--twitter" data-share="twitter" aria-label="트위터(X)로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        </span>
+        <span class="share-item__label">트위터</span>
+      </button>
+      <button type="button" class="share-item share-item--naver" data-share="naver" aria-label="네이버 블로그로 공유">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.91 12.03 9.94 6H6v12h4.09v-6.03L14.06 18H18V6h-4.09z"/></svg>
+        </span>
+        <span class="share-item__label">네이버블로그</span>
+      </button>
+      <button type="button" class="share-item share-item--instagram" data-share="instagram" aria-label="인스타그램 공유용 URL 복사">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4 1 .5.4.8.8 1 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-1 1.4-.4.5-.8.8-1.4 1-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-1-.5-.4-.8-.8-1-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 1-1.4.4-.5.8-.8 1.4-1 .4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.2.8-.4.3-.6.7-.8 1.2-.1.4-.3 1-.4 2.1-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.2.3.4.7.6 1.2.8.4.1 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.2-.8.4-.3.6-.7.8-1.2.1-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.2-.3-.4-.7-.6-1.2-.8-.4-.1-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.7a4.1 4.1 0 1 1 0 8.2 4.1 4.1 0 0 1 0-8.2zm0 6.7a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2zm5.2-6.9a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+        </span>
+        <span class="share-item__label">인스타그램</span>
+      </button>
+      <button type="button" class="share-item share-item--copy" data-share="copy" aria-label="URL 복사">
+        <span class="share-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </span>
+        <span class="share-item__label">URL 복사</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 복사 토스트 + 모바일 플로팅 버튼 -->
+<div id="copyToast" class="copy-toast" role="status" aria-live="polite">클립보드에 복사되었습니다.</div>
+<div class="mobile-fab" role="group" aria-label="모바일 플로팅 버튼">
+  <button class="mobile-fab__btn" type="button" id="btnShareFloating" aria-label="공유하기">
+    <img src="assets/share_icon.svg" alt="" aria-hidden="true" loading="lazy" />
+  </button>
+  <button class="mobile-fab__btn mobile-fab__btn--top" type="button" id="btnScrollTop" aria-label="맨 위로">
+    <span aria-hidden="true">TOP</span>
+  </button>
+</div>
+
+<script>
+  // ── PC방 토글 이미지 상태 ──
+  function setPcRoomToggleState(isPcRoom) {
+    var toggleBtn = document.getElementById('pcRoomToggle');
+    if (!toggleBtn) { return; }
+    var toggleImg = toggleBtn.querySelector('.toggle-btn__img');
+    if (!toggleImg) { return; }
+    var isOn = Boolean(isPcRoom);
+    toggleBtn.dataset.state = isOn ? 'on' : 'off';
+    toggleImg.src = isOn ? 'assets/off=on.png' : 'assets/off=off.png';
+    toggleImg.alt = isOn ? 'PC방 모드 ON' : 'PC방 모드 OFF';
+  }
+  setPcRoomToggleState(false);
+
+  // ── 공유하기 설정 — 배포 시 아래 값을 교체하세요 ──
+  // [BACKEND] [[SITE_NAME]], [[TITLE]], [[DESCRIPTION]], [[HTTPS_PAGE_URL]], [[OG_IMAGE_URL]] 교체
+  var SHARE_CONFIG = {
+    title:       '[[TITLE]]',
+    description: '[[DESCRIPTION]]',
+    kakaoKey:    'd1c0c39f4dbac0062bf36527a3021357',
+    ogImage:     '[[OG_IMAGE_URL]]'
+  };
+
+  var copyToast = document.getElementById('copyToast');
+  var copyToastTimer = null;
+  var DEFAULT_TOAST_MSG = '클립보드에 복사되었습니다.';
+  function showCopyToast(msg) {
+    if (!copyToast) { return; }
+    copyToast.textContent = msg || DEFAULT_TOAST_MSG;
+    copyToast.classList.add('is-visible');
+    if (copyToastTimer) { clearTimeout(copyToastTimer); }
+    copyToastTimer = setTimeout(function() {
+      copyToast.classList.remove('is-visible');
+    }, 2200);
+  }
+  function fallbackCopyText(text) {
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    var copied = false;
+    try { copied = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(textarea);
+    return copied;
+  }
+  function copyUrlWithToast(url, toastMsg) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function() {
+        showCopyToast(toastMsg);
+      }).catch(function() {
+        if (fallbackCopyText(url)) { showCopyToast(toastMsg); }
+      });
+    } else if (fallbackCopyText(url)) {
+      showCopyToast(toastMsg);
+    }
+  }
+
+  // Kakao SDK 초기화
+  (function initKakao() {
+    if (!window.Kakao || !SHARE_CONFIG.kakaoKey) { return; }
+    if (Kakao.isInitialized && Kakao.isInitialized()) { return; }
+    try { Kakao.init(SHARE_CONFIG.kakaoKey); } catch (e) {}
+  })();
+
+  // 공유 모달 열기/닫기
+  var shareModal = document.getElementById('shareModal');
+  var shareModalClose = document.getElementById('shareModalClose');
+  var lastShareTrigger = null;
+  function openShareModal(trigger) {
+    if (!shareModal) { return; }
+    lastShareTrigger = trigger || null;
+    shareModal.classList.add('is-open');
+    shareModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (shareModalClose) { shareModalClose.focus(); }
+  }
+  function closeShareModal() {
+    if (!shareModal) { return; }
+    shareModal.classList.remove('is-open');
+    shareModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastShareTrigger && lastShareTrigger.focus) { lastShareTrigger.focus(); }
+  }
+  if (shareModal) {
+    shareModal.addEventListener('click', function(e) {
+      if (e.target === shareModal) { closeShareModal(); }
+    });
+  }
+  if (shareModalClose) {
+    shareModalClose.addEventListener('click', closeShareModal);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && shareModal && shareModal.classList.contains('is-open')) {
+      closeShareModal();
+    }
+  });
+
+  // SNS별 공유 동작
+  function openPopup(url) {
+    var w = 600, h = 600;
+    var left = (window.screen.width  - w) / 2;
+    var top  = (window.screen.height - h) / 2;
+    window.open(url, '_blank', 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',noopener');
+  }
+  function shareFacebook() {
+    openPopup('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href));
+  }
+  function shareTwitter() {
+    openPopup('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(SHARE_CONFIG.title));
+  }
+  function shareNaver() {
+    openPopup('https://share.naver.com/web/shareView?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(SHARE_CONFIG.title));
+  }
+  function shareKakao() {
+    if (!window.Kakao || !Kakao.Share) { return; }
+    if (!Kakao.isInitialized || !Kakao.isInitialized()) { return; }
+    try {
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: SHARE_CONFIG.title,
+          description: SHARE_CONFIG.description,
+          imageUrl: SHARE_CONFIG.ogImage,
+          link: { mobileWebUrl: window.location.href, webUrl: window.location.href }
+        },
+        buttons: [{ title: '자세히 보기', link: { mobileWebUrl: window.location.href, webUrl: window.location.href } }]
+      });
+    } catch (e) {}
+  }
+  function shareInstagram() {
+    copyUrlWithToast(window.location.href, 'URL이 복사되었습니다. 인스타그램에 붙여넣어 주세요.');
+  }
+  function shareCopy() {
+    copyUrlWithToast(window.location.href, '클립보드에 복사되었습니다.');
+  }
+  var SHARE_HANDLERS = {
+    kakao: shareKakao, facebook: shareFacebook, twitter: shareTwitter,
+    naver: shareNaver, instagram: shareInstagram, copy: shareCopy
+  };
+  if (shareModal) {
+    shareModal.addEventListener('click', function(e) {
+      var target = e.target.closest ? e.target.closest('[data-share]') : null;
+      if (!target) { return; }
+      var handler = SHARE_HANDLERS[target.getAttribute('data-share')];
+      if (typeof handler === 'function') { handler(); closeShareModal(); }
+    });
+  }
+
+  var btnShare = document.getElementById('btnShare');
+  if (btnShare) { btnShare.addEventListener('click', function() { openShareModal(btnShare); }); }
+  var btnShareFloating = document.getElementById('btnShareFloating');
+  if (btnShareFloating) { btnShareFloating.addEventListener('click', function() { openShareModal(btnShareFloating); }); }
+  var btnScrollTop = document.getElementById('btnScrollTop');
+  if (btnScrollTop) {
+    btnScrollTop.addEventListener('click', function(e) {
+      e.preventDefault();
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: reduce ? 'auto' : 'smooth' });
+      } catch (err) {
+        (document.scrollingElement || document.documentElement).scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+div:nth-child(3) >div >span:nth-child(3) { font-size: 13px !important }
+#section-mission .section-head span:nth-child(3) { font-size: 15px !important }
+</style>
